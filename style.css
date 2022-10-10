@@ -1,0 +1,23 @@
+:root {
+  display: flex;
+  --title-height: 25px;
+}
+body {
+  padding: 0;
+  margin: 0;
+}
+ul,
+li {
+  list-style: none;
+}
+.title-bar {
+  display: flex;
+  height: var(--title-height);
+  width: 100vw;
+}
+.draggable {
+  width: 100%;
+  -webkit-app-region: drag;
+  width: -webkit-fill-available;
+  height: var(--title-height);
+}
