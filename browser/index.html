@@ -7,13 +7,15 @@
   </head>
   <body>
     <div class="title-bar">
+      <input type="checkbox" id="open-address" hidden />
+      <label for="open-address" class="open-address">Address </label>
+      <input id="address" />
       <label class="browser-color" for="browser-color">Color</label>
       <input type="color" id="browser-color" value="rgba(0,0,0,0.5)" hidden />
       <input id="browser-opacity" type="range" min="0.01" max="1" step="0.01" />
       <div class="draggable"></div>
       <button id="close-browser">❌</button>
     </div>
-    <input id="address" style="display: none" />
     <webview useragent="electron-webview"></webview>
 
     <script src="./renderer.js"></script>

@@ -1,10 +1,9 @@
 const { ipcRenderer } = require("electron");
 const { changeBackground, changeOpacity } = require("../utils/background.js");
-const ipc = ipcRenderer;
 
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("close-browser").addEventListener("click", () => {
-    ipc.send("close-browser");
+    window.close();
   });
   const $webview = document.querySelector("webview");
   document.getElementById("browser-opacity").addEventListener("input", () => {

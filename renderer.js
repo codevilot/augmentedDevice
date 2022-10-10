@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", () => {
   if (storage.getItem("list").length > 0) {
     storage.getItem("list").map((item) => {
       const value = createLi();
-      console.log((value.querySelector("input").value = item));
+      value.querySelector("input").value = item;
       ipcRenderer.send("open-add-browser", item);
     });
   }

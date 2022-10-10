@@ -37,7 +37,7 @@ const createBrowserWindow = (address = "") => {
       nodeIntegration: true,
       contextIsolation: false,
       webviewTag: true,
-      enableremotemodule: "true",
+      enableRemoteModule: true,
     },
   });
   childWindow.setAlwaysOnTop(true, "floating");
