@@ -15,7 +15,7 @@ body.dark {
   width: calc(100% - var(--address-width));
   border-radius: var(--address-width);
 }
-#open-conf,
+
 #browser-color,
 #browser-opacity,
 #open-browser,
@@ -46,7 +46,6 @@ body.dark {
 .title-bar.active #browser-color,
 .title-bar.active #close-browser,
 .title-bar.active #open-browser,
-.title-bar.active #open-conf,
 .title-bar.active .draggable,
 .title-bar.active .open-address {
   display: block;
@@ -59,7 +58,7 @@ body.dark {
   background: none;
   border: none;
 }
-#open-conf,
+
 #open-browser,
 #close-browser,
 #prev-page,

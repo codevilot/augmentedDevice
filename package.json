@@ -1,6 +1,6 @@
 {
   "name": "AugumentedDevice",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "AugumentedDevice",
   "main": "main.js",
   "scripts": {
