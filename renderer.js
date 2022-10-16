@@ -1,60 +1,59 @@
 const { ipcRenderer } = require("electron");
-const storage = require("electron-localStorage");
+const store = require("electron-localstorage");
+const { changeOpacity } = require("./utils/background.js");
+
 window.addEventListener("DOMContentLoaded", () => {
-  const newBrowser = () => {
-    const li = document.createElement("li");
-    const input = document.createElement("input");
-    const button = document.createElement("button");
-    li.append(input);
-    li.append(button);
-    button.textContent = "X";
-    input.classList.add("url");
-    return li;
-  };
+  document.body.classList.toggle("dark", store.getItem("dark") === "dark");
 
-  const createLi = () => {
-    const li = newBrowser();
-    document.querySelector(".opend-list").append(li);
-    return li;
-  };
-
-  const setUrl = () => {
-    storage.setItem(
-      "list",
-      [...document.querySelectorAll(".url")].map((element) => element.value)
-    );
-  };
-  document.getElementById("close-main").addEventListener("click", () => {
-    ipcRenderer.send("close-main");
-  });
-
-  document
-    .getElementById("add-browser")
-    .addEventListener("click", () => createLi());
   document.getElementById("open-browser").addEventListener("click", () => {
     ipcRenderer.send("open-browser");
   });
+
+  document.getElementById("close-browser").addEventListener("click", () => {
+    window.close();
+  });
+  const $webview = document.querySelector("webview");
+
+  document.getElementById("prev-page").addEventListener("click", () => {
+    $webview.goBack();
+  });
+  document.getElementById("next-page").addEventListener("click", () => {
+    $webview.goForward();
+  });
+  document.getElementById("browser-opacity").addEventListener("input", () => {
+    changeOpacity("webview", "#browser-opacity");
+  });
+  document.getElementById("browser-color").addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    store.setItem("dark", document.body.matches(".dark") ? "dark" : "light");
+  });
   document
-    .querySelector(".opend-list")
-    .addEventListener("click", ({ target }) => {
-      if (target.matches("button")) {
-        target.closest("li").remove();
-        setUrl();
-      }
-    });
-  document
-    .querySelector(".opend-list")
+    .getElementById("address")
     .addEventListener("keyup", ({ code, target }) => {
       if (code === "Enter") {
-        setUrl();
-        ipcRenderer.send("open-add-browser", target.value);
+        $webview.loadURL(
+          !target.value.includes(".")
+            ? "https://www.google.com/search?q=" + target.value
+            : target.value.includes("http")
+            ? target.value
+            : "https://" + target.value
+        );
       }
     });
-  if (storage.getItem("list").length > 0) {
-    storage.getItem("list").map((item) => {
-      const value = createLi();
-      value.querySelector("input").value = item;
-      ipcRenderer.send("open-add-browser", item);
-    });
-  }
+  document.querySelector(".title-bar").addEventListener("mouseover", () => {
+    document.querySelector(".title-bar").classList.add("active");
+  });
+  $webview.addEventListener("mouseover", () => {
+    document.querySelector(".title-bar").classList.remove("active");
+  });
+});
+
+window.addEventListener("load", () => {
+  document.querySelector("webview").src = "https://google.com";
+  /**
+   location.hash.includes("http")
+     ? location.hash.slice(1)
+     : "https://" + location.hash.slice(1);
+   
+   */
 });

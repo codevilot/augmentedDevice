@@ -1,24 +1,107 @@
 :root {
-  display: flex;
   --title-height: 25px;
+  --address-width: 100px;
 }
 body {
-  padding: 0;
   margin: 0;
-  background: white;
+  background-color: rgba(255, 255, 255, 1);
+  width: 100vw;
+  height: 100vh;
 }
-ul,
-li {
-  list-style: none;
+body.dark {
+  background-color: rgba(0, 0, 0, 1);
+}
+#address {
+  width: calc(100% - var(--address-width));
+  border-radius: var(--address-width);
+}
+#open-conf,
+#browser-color,
+#browser-opacity,
+#open-browser,
+#close-browser,
+.draggable,
+.open-address {
+  display: none;
 }
 .title-bar {
+  place-content: space-between;
   display: flex;
-  height: var(--title-height);
   width: 100vw;
+  height: var(--title-height);
+  position: fixed;
+  z-index: 1;
+}
+
+.title-bar.active {
+  background: black;
+}
+
+.address-bar {
+  color: white;
+  display: none;
+}
+.title-bar.active #open-address:checked ~ .address-bar,
+.title-bar.active #browser-opacity,
+.title-bar.active #browser-color,
+.title-bar.active #close-browser,
+.title-bar.active #open-browser,
+.title-bar.active #open-conf,
+.title-bar.active .draggable,
+.title-bar.active .open-address {
+  display: block;
 }
 .draggable {
-  width: 100%;
   -webkit-app-region: drag;
+  width: 100%;
+}
+#browser-color {
+  background: none;
+  border: none;
+}
+#open-conf,
+#open-browser,
+#close-browser,
+#prev-page,
+#next-page {
+  background: none;
+  border: none;
+  filter: brightness(0) invert(1);
+}
+.displaynone {
+  display: none;
+}
+.textedit {
+  background: none;
+  box-sizing: border-box;
+  border: none;
   width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  padding: 10px;
+  resize: none;
+  height: calc(100vh - var(--title-height));
+  color: white;
+  margin-bottom: -5px;
+}
+#contentWrapper {
+  position: relative;
+}
+#content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.address-bar {
+  background: black;
+  position: absolute;
+  top: var(--title-height);
   height: var(--title-height);
+  width: 100%;
+}
+webview {
+  height: 100%;
+  width: 100%;
+  display: flex;
 }

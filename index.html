@@ -2,21 +2,38 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Memo</title>
+    <title>Browser</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="title-bar">
+      <input type="checkbox" id="open-address" hidden />
+      <label for="open-address" class="open-address">🌐</label>
+      <div class="address-bar">
+        <button id="prev-page">🡰</button>
+        <button id="next-page">🡲</button>
+        <input id="address" />
+      </div>
+      <button id="browser-color">🎨</button>
+
+      <input
+        id="browser-opacity"
+        type="range"
+        min="0.01"
+        max="1"
+        step="0.01"
+        value="1"
+      />
       <div class="draggable"></div>
-
-      <button id="close-main">❌</button>
+      <button id="open-browser">➕</button>
+      <button id="user-agent">📱</button>
+      <!-- <button id="open-conf">⋯</button> -->
+      <button id="close-browser">✖</button>
     </div>
-    <ul class="opend-list"></ul>
-    <div>
-      <button id="add-browser">add browser</button>
-      <button id="open-browser">open browser</button>
-    </div>
-
+    <webview
+      useragent="Mozilla/5.0 (Linux; Android 4.2.1; en‑us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19"
+    ></webview>
+    <!-- useragent="electron-webview" -->
     <script src="./renderer.js"></script>
   </body>
 </html>
