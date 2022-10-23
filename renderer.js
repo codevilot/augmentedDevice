@@ -2,17 +2,15 @@ const { ipcRenderer } = require("electron");
 const store = require("electron-localstorage");
 const { changeOpacity } = require("./utils/background.js");
 
+const $webview = document.querySelector("webview");
+const $address = document.getElementById("address");
+
 window.addEventListener("DOMContentLoaded", () => {
-  document.body.classList.toggle("dark", store.getItem("dark") === "dark");
+  $webview.classList.toggle("dark", store.getItem("dark") === "dark");
 
-  document.getElementById("open-browser").addEventListener("click", () => {
-    ipcRenderer.send("open-browser");
-  });
-
-  document.getElementById("close-browser").addEventListener("click", () => {
-    window.close();
-  });
-  const $webview = document.querySelector("webview");
+  document.body.addEventListener("click", ({ target }) =>
+    ipcRenderer.send(target.id)
+  );
 
   document.getElementById("prev-page").addEventListener("click", () => {
     $webview.goBack();
@@ -24,22 +22,20 @@ window.addEventListener("DOMContentLoaded", () => {
     changeOpacity("webview", "#browser-opacity");
   });
   document.getElementById("browser-color").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    store.setItem("dark", document.body.matches(".dark") ? "dark" : "light");
+    $webview.classList.toggle("dark");
+    store.setItem("dark", $webview.matches(".dark") ? "dark" : "light");
   });
-  document
-    .getElementById("address")
-    .addEventListener("keyup", ({ code, target }) => {
-      if (code === "Enter") {
-        $webview.loadURL(
-          !target.value.includes(".")
-            ? "https://www.google.com/search?q=" + target.value
-            : target.value.includes("http")
-            ? target.value
-            : "https://" + target.value
-        );
-      }
-    });
+  $address.addEventListener("keyup", ({ code, target }) => {
+    if (code === "Enter") {
+      $webview.loadURL(
+        !target.value.includes(".")
+          ? "https://www.google.com/search?q=" + target.value
+          : target.value.includes("http")
+          ? target.value
+          : "https://" + target.value
+      );
+    }
+  });
   document.querySelector(".title-bar").addEventListener("mouseover", () => {
     document.querySelector(".title-bar").classList.add("active");
   });
@@ -56,4 +52,7 @@ window.addEventListener("load", () => {
      : "https://" + location.hash.slice(1);
    
    */
+});
+$webview.addEventListener("did-stop-loading", ({ target }) => {
+  $address.value = target.src;
 });

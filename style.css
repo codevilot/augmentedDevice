@@ -1,25 +1,34 @@
 :root {
   --title-height: 25px;
   --address-width: 100px;
+  --opacity: 1;
 }
 body {
   margin: 0;
-  background-color: rgba(255, 255, 255, 1);
+
   width: 100vw;
   height: 100vh;
 }
-body.dark {
-  background-color: rgba(0, 0, 0, 1);
+
+webview {
+  background-color: rgb(255, 255, 255);
 }
+webview.dark {
+  background-color: rgb(0, 0, 0);
+}
+
 #address {
   width: calc(100% - var(--address-width));
   border-radius: var(--address-width);
+  box-sizing: border-box;
+  padding-left: 1rem;
 }
 
 #browser-color,
 #browser-opacity,
 #open-browser,
 #close-browser,
+#full-browser,
 .draggable,
 .open-address {
   display: none;
@@ -45,6 +54,7 @@ body.dark {
 .title-bar.active #browser-opacity,
 .title-bar.active #browser-color,
 .title-bar.active #close-browser,
+.title-bar.active #full-browser,
 .title-bar.active #open-browser,
 .title-bar.active .draggable,
 .title-bar.active .open-address {
@@ -61,6 +71,7 @@ body.dark {
 
 #open-browser,
 #close-browser,
+#full-browser,
 #prev-page,
 #next-page {
   background: none;

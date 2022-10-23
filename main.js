@@ -1,8 +1,9 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, ipcMain, BrowserWindow } = require("electron");
 
-let mainWindow;
+const windows = {};
+
 const createWindow = () => {
-  mainWindow = new BrowserWindow({
+  let mainWindow = new BrowserWindow({
     width: 500,
     height: 500,
     transparent: true,
@@ -11,14 +12,26 @@ const createWindow = () => {
       nodeIntegration: true,
       contextIsolation: false,
       webviewTag: true,
+      enableRemoteModule: true,
     },
   });
   mainWindow.loadFile("index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
+  windows[mainWindow.id] = mainWindow;
 };
-ipcMain.on("open-browser", () => {
-  createWindow();
+
+ipcMain.on("full-browser", ({ sender }) => {
+  const id = sender.getOwnerBrowserWindow().id;
+  if (windows[id].isMaximized()) windows[id].restore();
+  else windows[id].maximize();
 });
+ipcMain.on("close-browser", ({ sender }) => {
+  const id = sender.getOwnerBrowserWindow().id;
+  windows[id].close();
+  delete windows[id];
+});
+
+ipcMain.on("open-browser", createWindow);
 
 app.whenReady().then(() => {
   createWindow();
