@@ -1,6 +1,7 @@
 const { ipcRenderer } = require("electron");
-const store = require("electron-localstorage");
 const { changeOpacity } = require("./utils/background.js");
+const { setPageArrow } = require("./utils/browser.js");
+const store = require("electron-localstorage");
 
 const $webview = document.querySelector("webview");
 const $address = document.getElementById("address");
@@ -11,7 +12,10 @@ window.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", ({ target }) =>
     ipcRenderer.send(target.id)
   );
-
+  document.getElementById("toggle-device").addEventListener("click", () => {
+    // $webview.setUserAgent("electron");
+    // console.log(1, $webview.getUserAgent("electron"));
+  });
   document.getElementById("prev-page").addEventListener("click", () => {
     $webview.goBack();
   });
@@ -55,4 +59,5 @@ window.addEventListener("load", () => {
 });
 $webview.addEventListener("did-stop-loading", ({ target }) => {
   $address.value = target.src;
+  setPageArrow($webview);
 });

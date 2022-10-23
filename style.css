@@ -1,5 +1,5 @@
 :root {
-  --title-height: 25px;
+  --title-height: 30px;
   --address-width: 100px;
   --opacity: 1;
 }
@@ -24,11 +24,7 @@ webview.dark {
   padding-left: 1rem;
 }
 
-#browser-color,
-#browser-opacity,
-#open-browser,
-#close-browser,
-#full-browser,
+.title-item,
 .draggable,
 .open-address {
   display: none;
@@ -51,13 +47,7 @@ webview.dark {
   display: none;
 }
 .title-bar.active #open-address:checked ~ .address-bar,
-.title-bar.active #browser-opacity,
-.title-bar.active #browser-color,
-.title-bar.active #close-browser,
-.title-bar.active #full-browser,
-.title-bar.active #open-browser,
-.title-bar.active .draggable,
-.title-bar.active .open-address {
+.title-bar.active .title-item {
   display: block;
 }
 .draggable {
@@ -68,12 +58,13 @@ webview.dark {
   background: none;
   border: none;
 }
-
-#open-browser,
-#close-browser,
-#full-browser,
+#prev-page.inactive,
+#next-page.inactive {
+  filter: brightness(0) invert(0.3);
+}
 #prev-page,
-#next-page {
+#next-page,
+.title-item {
   background: none;
   border: none;
   filter: brightness(0) invert(1);
@@ -107,8 +98,11 @@ webview.dark {
   background: black;
   position: absolute;
   top: var(--title-height);
-  height: var(--title-height);
   width: 100%;
+}
+.address-control,
+.favorites {
+  height: var(--title-height);
 }
 webview {
   height: 100%;
