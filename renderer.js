@@ -13,8 +13,12 @@ window.addEventListener("DOMContentLoaded", () => {
     ipcRenderer.send(target.id)
   );
   document.getElementById("toggle-device").addEventListener("click", () => {
-    // $webview.setUserAgent("electron");
-    // console.log(1, $webview.getUserAgent("electron"));
+    if ($webview.getUserAgent() === "electron")
+      $webview.setUserAgent(
+        "Mozilla/5.0 (Linux; Android 4.2.1; en‑us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19"
+      );
+    else $webview.setUserAgent("electron");
+    $webview.reload();
   });
   document.getElementById("prev-page").addEventListener("click", () => {
     $webview.goBack();

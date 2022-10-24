@@ -16,7 +16,10 @@ webview {
 webview.dark {
   background-color: rgb(0, 0, 0);
 }
-
+label {
+  padding: 1px 6px;
+  font-weight: bold;
+}
 #address {
   width: calc(100% - var(--address-width));
   border-radius: var(--address-width);
