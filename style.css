@@ -21,15 +21,35 @@ label {
   font-weight: bold;
 }
 #address {
-  width: calc(100% - var(--address-width));
+  width: calc(100vw - var(--address-width));
   border-radius: var(--address-width);
   box-sizing: border-box;
   padding-left: 1rem;
+  height: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: rgb(226, 226, 226);
+  border: none;
+}
+.address-bar {
+  position: relative;
+}
+
+#toggle-favorite {
+  position: absolute;
+  right: 0;
+  background: none;
+  border: none;
+  color: black;
 }
 
 .title-item,
 .draggable,
 .open-address {
+  display: none;
+  font-weight: bold;
+}
+#browser-opacity {
   display: none;
 }
 .title-bar {
@@ -42,20 +62,32 @@ label {
 }
 
 .title-bar.active {
-  background: black;
+  background: rgb(243, 243, 243);
 }
 
-.address-bar {
+.navigation {
   color: white;
   display: none;
 }
-.title-bar.active #open-address:checked ~ .address-bar,
-.title-bar.active .title-item {
+.title-bar.active #open-address:checked ~ .navigation,
+.title-bar.active .title-item,
+.title-bar.active #browser-opacity {
   display: block;
 }
+.title-bar.active #browser-opacity {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#toggle-favorite {
+  font-weight: bold;
+}
+
 .draggable {
   -webkit-app-region: drag;
   width: 100%;
+  text-align: center;
+  font-weight: 300;
 }
 #browser-color {
   background: none;
@@ -65,12 +97,29 @@ label {
 #next-page.inactive {
   filter: brightness(0) invert(0.3);
 }
+
+#favorite-detail {
+  border-radius: 5px;
+  position: absolute;
+  right: 0px;
+  padding: 25px;
+  background: white;
+  color: black;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#favorite-detail:not(.open) {
+  display: none;
+}
+#favorite-detail .favorite-name {
+  font-weight: 100;
+}
 #prev-page,
 #next-page,
 .title-item {
   background: none;
   border: none;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(0);
 }
 .displaynone {
   display: none;
@@ -97,15 +146,25 @@ label {
   right: 0;
   bottom: 0;
 }
-.address-bar {
-  background: black;
+.navigation {
+  background: rgb(243, 243, 243);
   position: absolute;
   top: var(--title-height);
   width: 100%;
 }
-.address-control,
-.favorites {
+.address-control {
+  display: flex;
   height: var(--title-height);
+}
+.favorites {
+  display: flex;
+
+  min-height: 5px;
+}
+#favorite {
+  height: var(--title-height);
+  border: none;
+  background: none;
 }
 webview {
   height: 100%;

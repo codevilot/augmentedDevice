@@ -8,25 +8,29 @@
   <body>
     <div class="title-bar">
       <input type="checkbox" id="open-address" hidden />
-      <label class="title-item" for="open-address" class="open-address"
-        >∨</label>
-      <div class="address-bar">
+      <label class="title-item" for="open-address">∨</label>
+      <div class="navigation">
         <div class="address-control">
           <button id="prev-page" class="inactive">🡰</button>
           <button id="next-page" class="inactive">🡲</button>
-          <input id="address" > 
-          <button id="add-favorites">⭐</button>
-        </input>
+          <div class="address-bar">
+            <input id="address" />
+            <button id="toggle-favorite" class="inactive">☆</button>
+            <div id="favorite-detail">
+              <label class="favorite-name"
+                >이름 <input id="favorite-name"
+              /></label>
+              <button id="add-favorite">추가</button>
+              <button id="remove-favorite">제거</button>
+            </div>
+          </div>
         </div>
-        <div class="favorites">
-          <button>네이버</button>
-        </div>
+        <div class="favorites"></div>
       </div>
-      <button class="title-item" id="browser-color">🎨</button>
-      <button class="title-item" id="toggle-device">📱</button>
+      <button class="title-item" id="browser-color">☾</button>
+      <button class="title-item" id="toggle-device">🖥</button>
 
       <input
-        class="title-item"
         id="browser-opacity"
         type="range"
         min="0.01"
@@ -34,7 +38,7 @@
         step="0.01"
         value="1"
       />
-      <div class="draggable title-item"></div>
+      <div class="draggable title-item">구글</div>
       <button class="title-item" id="open-browser">➕</button>
 
       <button class="title-item" id="full-browser">❒</button>

@@ -1,5 +1,4 @@
 const { app, ipcMain, BrowserWindow } = require("electron");
-
 const windows = {};
 
 const createWindow = () => {
@@ -21,6 +20,7 @@ const createWindow = () => {
 };
 
 ipcMain.on("full-browser", ({ sender }) => {
+  console.log(sender);
   const id = sender.getOwnerBrowserWindow().id;
   if (windows[id].isMaximized()) windows[id].restore();
   else windows[id].maximize();
@@ -29,6 +29,10 @@ ipcMain.on("close-browser", ({ sender }) => {
   const id = sender.getOwnerBrowserWindow().id;
   windows[id].close();
   delete windows[id];
+});
+ipcMain.on("rerender", () => {
+  const windowKeys = Object.keys(windows);
+  windowKeys.forEach((id) => windows[id].webContents.send("rerender"));
 });
 
 ipcMain.on("open-browser", createWindow);

@@ -23,3 +23,9 @@
 
 7.  setUseragent를 사용하여 webview의 useragent를 바꾸면 아무 변화가 없는 것 같다.
     다른 페이지로 이동을 해보면 user agent는 바뀌었지만, 새로운 user agent로 새로 페이지를 로드 안했기 때문에 그대로이다
+
+8.  즐겨찾기를 추가할 때 처음 즐겨찾기를 불러들일 때, 만일 즐겨찾기 db가 비어있다고하면 어떻게 해야할 까? 새로 파일을 생성하고 빈 객체를 넣는다
+
+9.  주소 즐겨찾기에 저장해야하는 값은 어느 위치부터 해야할까?
+    1차시도 : ://를 제거하고 뒤부터 저장하는 것이 좋을 것 같다.
+10. Error occurred in handler for 'GUEST_VIEW_MANAGER_CALL': TypeError: Error processing argument at index 0, conversion failure from undefined
