@@ -16,7 +16,7 @@ chromium 기반의 브라우저이며 투명도를 조절할 수 있고 즐겨�
 작성중</br></br>
 
 ## 설치방법
-작성중</br></br>
+[다운로드 링크](https://github.com/codevilot/augmentedDevice/tree/main/download)</br></br>
 
 ## 사용방법
 1. AD 브라우저를 실행시킵니다.
