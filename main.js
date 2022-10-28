@@ -3,10 +3,11 @@ const windows = {};
 
 const createWindow = () => {
   let mainWindow = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: 600,
+    height: 600,
     transparent: true,
     frame: false,
+    icon: __dirname + "/assets/logo.ico",
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
@@ -20,9 +21,8 @@ const createWindow = () => {
 };
 
 ipcMain.on("full-browser", ({ sender }) => {
-  console.log(sender);
   const id = sender.getOwnerBrowserWindow().id;
-  if (windows[id].isMaximized()) windows[id].restore();
+  if (windows[id].isMaximized()) windows[id].unmaximize();
   else windows[id].maximize();
 });
 ipcMain.on("close-browser", ({ sender }) => {

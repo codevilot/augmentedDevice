@@ -1,11 +1,16 @@
 {
-  "name": "AugumentedDevice",
+  "name": "augmenteddevice",
   "version": "1.0.0",
   "description": "AugumentedDevice",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "builder": "electron-builder"
+  },
+  "build": {
+    "win": {
+      "icon": "./assets/logo.ico"
+    }
   },
   "repository": "https://github.com/codevilot/augmentedDevice",
   "keywords": [

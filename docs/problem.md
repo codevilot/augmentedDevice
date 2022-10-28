@@ -28,4 +28,8 @@
 
 9.  주소 즐겨찾기에 저장해야하는 값은 어느 위치부터 해야할까?
     1차시도 : ://를 제거하고 뒤부터 저장하는 것이 좋을 것 같다.
-10. Error occurred in handler for 'GUEST_VIEW_MANAGER_CALL': TypeError: Error processing argument at index 0, conversion failure from undefined
+
+10. 아이콘이 드래그되는 현상이 있다.
+    css로 드래그가 안되게 수정
+
+11. 즐겨찾기가 브라우저마다 공유되지 않는 현상이 있다. 처음의 db값만을 이어 받는다.

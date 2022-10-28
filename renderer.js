@@ -10,11 +10,15 @@ const $favoriteName = document.getElementById("favorite-name");
 const sendRerender = () => ipcRenderer.send("rerender");
 const actions = {
   modalElement: "favorite-detail",
+  "favorite-background"() {
+    modal.close(this.modalElement);
+  },
   "toggle-favorite"() {
     modal.open(this.modalElement);
     toggleStar.active($star);
     favorites.add($webview.getTitle());
     $favoriteName.value = favorites.search().name;
+    $favoriteName.focus();
     sendRerender();
   },
   "add-favorite"() {
@@ -40,12 +44,15 @@ window.addEventListener("DOMContentLoaded", () => {
   $webview.classList.toggle("dark", store.getItem("dark") === "dark");
   document.body.addEventListener("click", ({ target }) => {
     if (actions[target.id]) actions[target.id](target);
-    else {
-      modal.close(actions.modalElement);
-      ipcRenderer.send(target.id);
-    }
+    else ipcRenderer.send(target.id);
   });
-
+  document
+    .getElementById("favorite-detail")
+    .addEventListener("keyup", ({ code }) => {
+      if (code === "Enter") {
+        actions["add-favorite"]();
+      }
+    });
   document.getElementById("toggle-device").addEventListener("click", () => {
     if ($webview.getUserAgent() === "electron")
       $webview.setUserAgent(
@@ -62,6 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("browser-opacity").addEventListener("input", () => {
     changeOpacity("webview", "#browser-opacity");
+    changeOpacity(".title-bar", "#browser-opacity");
   });
   document.getElementById("browser-color").addEventListener("click", () => {
     $webview.classList.toggle("dark");
@@ -77,13 +85,6 @@ window.addEventListener("DOMContentLoaded", () => {
           : "https://" + target.value
       );
     }
-  });
-  document.querySelector(".title-bar").addEventListener("mouseover", () => {
-    document.querySelector(".title-bar").classList.add("active");
-  });
-  $webview.addEventListener("mouseover", () => {
-    document.querySelector(".title-bar").classList.remove("active");
-    modal.close(actions.modalElement);
   });
 });
 
