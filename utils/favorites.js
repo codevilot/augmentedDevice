@@ -50,7 +50,6 @@ const favorites = (() => {
       data = getData();
       const $webview = document.querySelector("webview");
       const favoritesList = Object.entries(data);
-      console.log(favoritesList);
       if (this.search($webview.src)) toggleStar.active($star);
       else toggleStar.inactive($star);
       document.querySelector(".favorites").innerHTML = favoritesList

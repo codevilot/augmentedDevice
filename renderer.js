@@ -87,16 +87,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+ipcRenderer.on(
+  "src",
+  (_, url) => (document.querySelector("webview").src = url)
+);
 
-window.addEventListener("load", () => {
-  document.querySelector("webview").src = "https://google.com";
-  /**
-   location.hash.includes("http")
-     ? location.hash.slice(1)
-     : "https://" + location.hash.slice(1);
-   
-   */
-});
 $webview.addEventListener("did-stop-loading", ({ target }) => {
   $address.value = target.src;
   setPageArrow($webview);

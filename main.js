@@ -1,7 +1,8 @@
 const { app, ipcMain, BrowserWindow } = require("electron");
+
 const windows = {};
 
-const createWindow = () => {
+const createWindow = (url = "https://google.com") => {
   let mainWindow = new BrowserWindow({
     width: 600,
     height: 600,
@@ -13,10 +14,12 @@ const createWindow = () => {
       contextIsolation: false,
       webviewTag: true,
       enableRemoteModule: true,
+      nativeWindowOpen: true,
     },
   });
   mainWindow.loadFile("index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
+  mainWindow.send("src", url);
   windows[mainWindow.id] = mainWindow;
 };
 
@@ -35,10 +38,11 @@ ipcMain.on("rerender", () => {
   windowKeys.forEach((id) => windows[id].webContents.send("rerender"));
 });
 
-ipcMain.on("open-browser", createWindow);
+ipcMain.on("open-browser", (_, url) => createWindow(url));
 
 app.whenReady().then(() => {
   createWindow();
+
   app.on("activate", function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
