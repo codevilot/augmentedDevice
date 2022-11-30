@@ -18,6 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "electron-localstorage": "^1.0.5",
+
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
@@ -27,7 +28,46 @@
     "@electron-forge/maker-squirrel": "^6.0.3",
     "@electron-forge/maker-zip": "^6.0.3",
     "@electron-forge/publisher-github": "^6.0.3",
+    "electron-prebuilt-compile": "^8.2.0",
     "electron": "21.3.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_publish_example"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "publishers": [
+        {
+          "name": "@codevilot/augmentedDevice",
+          "config": {
+            "repository": {
+              "owner": "codevilot",
+              "name": "augmentedDevice"
+            },
+            "draft": true
+          }
+        }
+      ]
+    }
   }
-
 }
