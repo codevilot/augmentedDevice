@@ -17,7 +17,7 @@ const createWindow = (url = "https://google.com") => {
       nativeWindowOpen: true,
     },
   });
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("./src/index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
   mainWindow.send("src", url);
   windows[mainWindow.id] = mainWindow;

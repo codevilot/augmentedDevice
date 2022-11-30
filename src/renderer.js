@@ -1,8 +1,8 @@
 const { ipcRenderer } = require("electron");
+const store = require("electron-localstorage");
 const { changeOpacity } = require("./utils/background.js");
 const { setPageArrow } = require("./utils/browser.js");
 const { favorites, toggleStar, modal } = require("./utils/favorites");
-const store = require("electron-localstorage");
 const $webview = document.querySelector("webview");
 const $address = document.getElementById("address");
 const $star = document.getElementById("toggle-favorite");
