@@ -22,7 +22,7 @@ chromium 기반의 브라우저이며 투명도를 조절할 수 있고 즐겨�
 https://codevil.tistory.com/223</br></br>
 
 ## 설치방법
-[다운로드 링크](https://www.dropbox.com/s/y0xd5yg3yw51oyl/augmenteddevice%20Setup%201.0.0.exe?dl=0)</br></br>
+[배포 사이트](https://github.com/codevilot/augmentedDevice/releases)</br></br>
 
 ## 사용방법
 1. AD 브라우저를 실행시킵니다.
