@@ -194,8 +194,3 @@ label {
   border: none;
   background: none;
 }
-webview {
-  height: calc(100% - var(--title-height));
-  width: 100%;
-  display: flex;
-}

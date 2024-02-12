@@ -1,71 +1,20 @@
 {
   "name": "augmenteddevice",
-  "version": "1.0.2",
-  "description": "AugumentedDevice",
-  "main": "src/index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
   },
-  "keywords": [],
-  "author": {
-    "name": "codevil",
-    "email": "namhundred@naver.com"
-  },
-  "license": "MIT",
   "dependencies": {
-    "electron-localstorage": "^1.0.5",
-    "electron-squirrel-startup": "^1.0.0"
+    "@tauri-apps/api": "^1.5.2"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.3",
-    "@electron-forge/maker-deb": "^6.0.3",
-    "@electron-forge/maker-rpm": "^6.0.3",
-    "@electron-forge/maker-squirrel": "^6.0.3",
-    "@electron-forge/maker-zip": "^6.0.3",
-    "@electron-forge/publisher-github": "^6.0.3",
-    "electron": "21.3.1"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "electron_publish_example"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ],
-      "publishers": [
-        {
-          "name": "@electron-forge/publisher-github",
-          "config": {
-            "repository": {
-              "owner": "codevilot",
-              "name": "augmentedDevice"
-            },
-            "draft": true
-          }
-        }
-      ]
-    }
+    "@tauri-apps/cli": "^1.5.8",
+    "vite": "^5.0.0",
+    "typescript": "^5.0.2"
   }
 }
