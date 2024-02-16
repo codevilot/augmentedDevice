@@ -8,7 +8,8 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "dist": "electron-builder"
   },
   "keywords": [],
   "author": {
@@ -27,7 +28,9 @@
     "@electron-forge/maker-squirrel": "^6.0.3",
     "@electron-forge/maker-zip": "^6.0.3",
     "@electron-forge/publisher-github": "^6.0.3",
-    "electron": "21.3.1"
+    "electron": "21.3.1",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.3.3"
   },
   "config": {
     "forge": {
