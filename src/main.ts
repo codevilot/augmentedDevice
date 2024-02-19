@@ -1,5 +1,12 @@
-const { app, ipcMain, BrowserWindow } = require("electron");
+import { ipcRenderer } from "electron";
 
+const { app, ipcMain, BrowserWindow } = require("electron");
+const path = require("path");
+// import * as path from "path";
+
+interface Sender extends Electron.WebContents {
+  getOwnerBrowserWindow(): Electron.BrowserWindow | null;
+}
 const windows = {};
 
 const createWindow = (url = "https://google.com") => {
@@ -8,28 +15,27 @@ const createWindow = (url = "https://google.com") => {
     height: 600,
     transparent: true,
     frame: false,
-    icon: __dirname + "/assets/logo.ico",
+    icon: __dirname + "./logo.ico",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
       webviewTag: true,
-      enableRemoteModule: true,
-      nativeWindowOpen: true,
+      preload: path.join(__dirname, "preload.js"),
     },
   });
-  mainWindow.loadFile("./src/index.html");
+  mainWindow.loadFile(__dirname + "./index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
-  mainWindow.send("src", url);
+  // mainWindow.send("src", url);
   windows[mainWindow.id] = mainWindow;
 };
 
 ipcMain.on("full-browser", ({ sender }) => {
-  const id = sender.getOwnerBrowserWindow().id;
+  const id = (sender as Sender).getOwnerBrowserWindow().id;
   if (windows[id].isMaximized()) windows[id].unmaximize();
   else windows[id].maximize();
 });
 ipcMain.on("close-browser", ({ sender }) => {
-  const id = sender.getOwnerBrowserWindow().id;
+  const id = (sender as Sender).getOwnerBrowserWindow().id;
   windows[id].close();
   delete windows[id];
 });
