@@ -8,7 +8,7 @@
     "lint": "echo \"No linting configured\"",
     "dist": "electron-builder build",
     "build": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/logo.ico build && copyfiles -f src/style.css build",
-    "start": "electron ."
+    "dev": "yarn build && electron ."
   },
   "keywords": [],
   "author": {
