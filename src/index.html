@@ -8,8 +8,16 @@
   <body>
     <div class="title-bar">
       <input type="checkbox" id="open-address" hidden />
-      <label class="title-item" for="open-address">∨</label>
+      <label class="title-item" for="open-address">⁝</label>
       <div class="navigation">
+        <input
+          id="browser-opacity"
+          type="range"
+          min="0.01"
+          max="1"
+          step="0.01"
+          value="1"
+        />
         <div class="address-control">
           <button id="prev-page" class="inactive">🡰</button>
           <button id="next-page" class="inactive">🡲</button>
@@ -31,14 +39,7 @@
         </div>
         <div class="favorites"></div>
       </div>
-      <input
-        id="browser-opacity"
-        type="range"
-        min="0.01"
-        max="1"
-        step="0.01"
-        value="1"
-      />
+
       <div class="draggable title-item">구글</div>
       <button class="title-item" id="open-browser">+</button>
 
