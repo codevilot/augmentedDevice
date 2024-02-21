@@ -1,6 +1,7 @@
 :root {
   --title-height: 30px;
-  --address-width: 100px;
+  --address-width: 70px;
+  --detail-width: 300px;
   --opacity: 1;
 
   --blue-5: rgb(30, 30, 214);
@@ -29,11 +30,16 @@ label {
   padding: 1px 6px;
   font-weight: bold;
 }
+.icon {
+  width: 30px;
+  height: 30px;
+}
 #address {
-  width: calc(100vw - var(--address-width));
+  width: calc(var(--detail-width) - var(--address-width));
   border-radius: var(--address-width);
   box-sizing: border-box;
   padding-left: 1rem;
+  padding-right: 30px;
   height: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -52,9 +58,6 @@ label {
   color: black;
 }
 
-#browser-opacity {
-  width: 4rem;
-}
 .title-bar {
   place-content: space-between;
   display: flex;
@@ -64,17 +67,16 @@ label {
   background: rgb(243, 243, 243);
 }
 
-.navigation {
-  color: white;
-  display: none;
-}
 .title-bar #open-address:checked ~ .navigation {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1;
 }
 
 #toggle-favorite {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .draggable {
@@ -175,10 +177,11 @@ label {
   z-index: 1;
 }
 .navigation {
+  display: none;
   background: rgb(243, 243, 243);
   position: absolute;
   top: var(--title-height);
-  width: 100%;
+  width: var(--detail-width);
 }
 .address-control {
   display: flex;

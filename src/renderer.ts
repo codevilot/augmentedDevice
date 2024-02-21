@@ -74,7 +74,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   document.getElementById("browser-opacity").addEventListener("input", () => {
     changeOpacity("webview", "#browser-opacity");
-    changeOpacity(".title-bar", "#browser-opacity");
+    // changeOpacity(".title-bar", "#browser-opacity");
   });
   document.getElementById("browser-color").addEventListener("click", () => {
     $webview.classList.toggle("dark");
