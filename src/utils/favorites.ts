@@ -1,14 +1,8 @@
-import { writeFileSync, readFileSync, existsSync } from "fs";
+const writeFileSync = window.writeFileSync;
+const readFileSync = window.readFileSync;
+const existsSync = window.existsSync;
 
-export const modal = {
-  open(id: string) {
-    document.getElementById(id).classList.add("open");
-  },
-  close(id: string) {
-    document.getElementById(id).classList.remove("open");
-  },
-};
-export const toggleStar = {
+const toggleStar = {
   active($star: HTMLElement) {
     $star.classList.add("inactive");
     $star.textContent = "★";
@@ -19,37 +13,37 @@ export const toggleStar = {
   },
 };
 
-export const favorites = () => {
+export const favorites = (() => {
   const getSrc = (src: string) => src.split("://")[1];
+  const isBookmarkExist = existsSync();
   const getData = () =>
-    existsSync("./favorite.json")
-      ? JSON.parse(`${readFileSync("./favorite.json")}`)
+    isBookmarkExist
+      ? JSON.parse(`${readFileSync()}`)
       : (() => {
-          writeFileSync("favorite.json", JSON.stringify({}));
+          writeFileSync(JSON.stringify({}));
           return {};
         })();
+
   let data = getData();
+  const $webview: Electron.WebviewTag = document.querySelector("webview");
   return {
     search() {
-      const $webview: Electron.WebviewTag = document.querySelector("webview");
       return data[getSrc($webview.src)];
     },
     update(name: string) {
-      const $webview: Electron.WebviewTag = document.querySelector("webview");
       data[getSrc($webview.src)] = { name: name };
-      writeFileSync("favorite.json", JSON.stringify(data));
+      writeFileSync(JSON.stringify(data));
     },
     add(name: string) {
       if (this.search()) return;
       this.update(name);
     },
     remove() {
-      const $webview: Electron.WebviewTag = document.querySelector("webview");
       delete data[getSrc($webview.src)];
-      writeFileSync("favorite.json", JSON.stringify(data));
+      writeFileSync(JSON.stringify(data));
     },
-    render($star) {
-      const $webview: Electron.WebviewTag = document.querySelector("webview");
+    render() {
+      const $star = document.getElementById("toggle-favorite");
       const favoritesList: Array<[string, { name: string }]> = Object.entries(
         getData()
       );
@@ -63,4 +57,4 @@ export const favorites = () => {
         .join("");
     },
   };
-};
+})();

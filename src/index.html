@@ -9,21 +9,10 @@
     <div class="title-bar">
       <input type="checkbox" id="open-address" hidden />
       <label class="title-item" for="open-address"
-        ><span class="icon">⁝</span></label
+        ><div class="icon">⁝</div></label
       >
 
       <div class="navigation">
-        <div>
-          Opacity
-          <input
-            id="browser-opacity"
-            type="range"
-            min="0.01"
-            max="1"
-            step="0.01"
-            value="1"
-          />
-        </div>
         <div class="address-control">
           <button id="prev-page" class="inactive">🡰</button>
           <button id="next-page" class="inactive">🡲</button>
@@ -41,21 +30,36 @@
             <div id="favorite-background"></div>
           </div>
         </div>
+        <div>
+          Opacity
+          <input
+            id="browser-opacity"
+            type="range"
+            min="0.01"
+            max="1"
+            step="0.01"
+            value="1"
+          />
+        </div>
         <button class="title-item" id="browser-color">
-          <span class="icon">☾</span>
+          <div class="icon">☾</div>
           Dark mode
         </button>
         <button class="title-item" id="toggle-device">
-          <span class="icon">🖥</span>
+          <div class="icon">🖥</div>
           Mobile mode
         </button>
         <div class="favorites"></div>
       </div>
 
       <div class="draggable title-item">구글</div>
-      <button class="title-item" id="open-browser">+</button>
+      <button class="title-item">
+        <div class="window-icon" id="open-browser">◳</div>
+      </button>
       <!-- <button class="title-item" id="full-browser">❒</button> -->
-      <button class="title-item" id="close-browser">✖</button>
+      <button class="title-item">
+        <div class="window-icon close" id="close-browser">✖</div>
+      </button>
     </div>
     <webview
       src="https://google.com"

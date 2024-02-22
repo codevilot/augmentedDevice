@@ -1,10 +1,13 @@
 :root {
-  --title-height: 30px;
+  --title-height: 34px;
   --address-width: 70px;
   --detail-width: 300px;
   --opacity: 1;
 
   --blue-5: rgb(30, 30, 214);
+}
+button {
+  padding: 0;
 }
 body {
   margin: 0;
@@ -30,9 +33,29 @@ label {
   padding: 1px 6px;
   font-weight: bold;
 }
+.window-icon {
+  width: 45px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.window-icon.close:hover {
+  background-color: red;
+}
+.window-icon:hover {
+  background-color: gray;
+}
 .icon {
   width: 30px;
   height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon:hover {
+  background-color: gray;
+  border-radius: 100%;
 }
 #address {
   width: calc(var(--detail-width) - var(--address-width));
@@ -182,6 +205,9 @@ label {
   position: absolute;
   top: var(--title-height);
   width: var(--detail-width);
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  border-radius: 10px;
 }
 .address-control {
   display: flex;
