@@ -1,8 +1,5 @@
-import { ipcRenderer } from "electron";
-
 const { app, ipcMain, BrowserWindow } = require("electron");
 const path = require("path");
-// import * as path from "path";
 
 interface Sender extends Electron.WebContents {
   getOwnerBrowserWindow(): Electron.BrowserWindow | null;
@@ -25,7 +22,6 @@ const createWindow = (url = "https://google.com") => {
   });
   mainWindow.loadFile(__dirname + "./index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
-  // mainWindow.send("src", url);
   windows[mainWindow.id] = mainWindow;
 };
 

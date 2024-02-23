@@ -3,7 +3,6 @@
   --address-width: 70px;
   --detail-width: 300px;
   --opacity: 1;
-
   --blue-5: rgb(30, 30, 214);
 }
 button {
@@ -73,7 +72,7 @@ label {
   position: relative;
 }
 
-#toggle-favorite {
+#bookmark-icon {
   position: absolute;
   right: 0;
   background: none;
@@ -97,7 +96,7 @@ label {
   z-index: 1;
 }
 
-#toggle-favorite {
+#bookmark-icon {
   font-weight: bold;
   font-size: 0.8rem;
 }
@@ -125,7 +124,7 @@ label {
   opacity: 0.3;
 }
 
-#favorite-detail {
+#bookmark-popup {
   border-radius: 5px;
   position: absolute;
   right: 0px;
@@ -136,10 +135,10 @@ label {
   z-index: 2;
 }
 
-#favorite-detail:not(.open) {
+#bookmark-popup:not(.open) {
   display: none;
 }
-#favorite-detail .favorite-name {
+#bookmark-popup #bookmark-name {
   font-weight: 100;
   display: block;
 }
@@ -191,7 +190,7 @@ label {
   background: none;
   color: var(--blue-5);
 }
-#favorite-detail.open + #favorite-background {
+#bookmark-popup.open + #favorite-background {
   position: fixed;
   height: 100vh;
   width: 100vw;
@@ -213,9 +212,8 @@ label {
   display: flex;
   height: var(--title-height);
 }
-.favorites {
+#bookmark-bar {
   display: flex;
-
   min-height: 5px;
 }
 #favorite {
