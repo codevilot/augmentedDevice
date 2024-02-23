@@ -21,10 +21,14 @@ contextBridge.exposeInMainWorld("getStore", (key: string) =>
 contextBridge.exposeInMainWorld(
   "writeFileSync",
   (data: string | NodeJS.ArrayBufferView, options?: WriteFileOptions) =>
-    writeFileSync(path.join(__dirname, BOOKMARKS_DIR), data, options)
+    writeFileSync(
+      path.join(__dirname, BOOKMARKS_DIR),
+      JSON.stringify(data),
+      options
+    )
 );
 contextBridge.exposeInMainWorld("readFileSync", () =>
-  readFileSync(path.join(__dirname, BOOKMARKS_DIR), "utf8")
+  JSON.parse(readFileSync(path.join(__dirname, BOOKMARKS_DIR), "utf8"))
 );
 contextBridge.exposeInMainWorld("existsSync", () =>
   existsSync(path.join(__dirname, BOOKMARKS_DIR))

@@ -10,10 +10,7 @@ declare global {
       listener: (event: IpcRendererEvent, ...args: any[]) => void
     ) => this;
     readonly ipcRendererSend: (channel: string, ...args: any[]) => void;
-    readonly writeFileSync: (
-      data: string | NodeJS.ArrayBufferView,
-      options?: WriteFileOptions
-    ) => void;
+    readonly writeFileSync: (data: object, options?: WriteFileOptions) => void;
     readonly readFileSync: () => Buffer;
     readonly existsSync: () => boolean;
   }

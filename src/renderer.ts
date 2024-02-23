@@ -1,80 +1,41 @@
 import { changeOpacity } from "./utils/background";
+import { bookmark } from "./utils/bookmark";
 import { setPageArrow } from "./utils/browser";
-import { favorites } from "./utils/favorites";
-const ipcRendererOn = window.ipcRendererOn;
-const ipcRendererSend = window.ipcRendererSend;
-const setStore = window.setStore;
-const getStore = window.getStore;
+const { ipcRendererOn, ipcRendererSend, setStore, getStore } = window;
 
 const $webview: Electron.WebviewTag = document.querySelector("webview");
 const $address = document.getElementById("address") as HTMLInputElement;
-const $star = document.getElementById("toggle-favorite");
-const $favoriteName = document.getElementById(
-  "favorite-name"
-) as HTMLInputElement;
 
-export const modal = {
-  open(id: string) {
-    document.getElementById(id).classList.add("open");
-  },
-  close(id: string) {
-    document.getElementById(id).classList.remove("open");
-  },
-};
-export const toggleStar = {
-  active($star: HTMLElement) {
-    $star.classList.add("inactive");
-    $star.textContent = "★";
-  },
-  inactive($star: HTMLElement) {
-    $star.classList.add("active");
-    $star.textContent = "☆";
-  },
-};
-const sendRerender = () => ipcRendererSend("rerender");
-const actions = {
-  modalElement: "favorite-detail",
-  "favorite-background"() {
-    modal.close(this.modalElement);
-  },
-  "toggle-favorite"() {
-    modal.open(this.modalElement);
-    toggleStar.active($star);
-    favorites.add($webview.getTitle());
-    $favoriteName.value = favorites.search().name;
-    $favoriteName.focus();
-    sendRerender();
-  },
-  "add-favorite"() {
-    const name = $favoriteName.value;
-    favorites.update(name.length > 0 ? name : $webview.getTitle());
-    modal.close(this.modalElement);
-    toggleStar.inactive($star);
-    sendRerender();
-  },
-  "remove-favorite"() {
-    favorites.remove();
-    toggleStar.inactive($star);
-    modal.close(this.modalElement);
-    sendRerender();
-  },
-  favorite(target) {
-    $webview.loadURL("https://" + target.getAttribute("href"));
-  },
-};
-
-ipcRendererOn("rerender", () => favorites.render());
+ipcRendererOn("rerender", () => bookmark.render());
 window.addEventListener("DOMContentLoaded", () => {
   $webview.classList.toggle("dark", getStore("dark") === "dark");
   document.body.addEventListener("click", ({ target }) => {
-    if (actions[target["id"]]) actions[target["id"]](target);
-    else ipcRendererSend(target["id"]);
+    switch (target["id"]) {
+      case "favorite-background":
+        bookmark.close();
+        break;
+      case "toggle-favorite":
+        bookmark.toggle();
+        break;
+      case "add-favorite":
+        bookmark.add();
+        break;
+      case "remove-favorite":
+        bookmark.remove();
+        break;
+      case "favorite":
+        bookmark.redirect(target["getAttribute"]("href"));
+        break;
+      default:
+        ipcRendererSend(target["id"]);
+    }
   });
   document
     .getElementById("favorite-detail")
     .addEventListener("keyup", ({ code }) => {
       if (code === "Enter") {
-        actions["add-favorite"]();
+        bookmark.add();
+        // actions["add-favorite"]();
       }
     });
   document.getElementById("toggle-device").addEventListener("click", () => {
@@ -121,6 +82,7 @@ $webview.addEventListener("did-stop-loading", ({ target }) => {
   $address.value = target["src"];
   setPageArrow($webview);
 
-  favorites.render();
+  // favorites.render();
+  bookmark.render();
   document.querySelector(".draggable").textContent = $webview.getTitle();
 });
