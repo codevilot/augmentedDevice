@@ -78,8 +78,15 @@ label {
   background: none;
   border: none;
   color: black;
+  font-weight: bold;
+  font-size: 0.8rem;
 }
-
+#bookmark-icon:after {
+  content: "☆";
+}
+#bookmark-icon:not(.inactive):after {
+  content: "★";
+}
 .title-bar {
   place-content: space-between;
   display: flex;
@@ -88,17 +95,15 @@ label {
   z-index: 1;
   background: rgb(243, 243, 243);
 }
-
+.title-item {
+  display: flex;
+  align-items: center;
+}
 .title-bar #open-address:checked ~ .navigation {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 1;
-}
-
-#bookmark-icon {
-  font-weight: bold;
-  font-size: 0.8rem;
 }
 
 .draggable {
@@ -199,6 +204,7 @@ label {
   z-index: 1;
 }
 .navigation {
+  padding: 10px 10px;
   display: none;
   background: rgb(243, 243, 243);
   position: absolute;

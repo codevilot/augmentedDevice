@@ -5,9 +5,9 @@ import { writeFileSync, readFileSync, existsSync, WriteFileOptions } from "fs";
 
 const BOOKMARKS_DIR = "./bookmarks.json";
 
-contextBridge.exposeInMainWorld("ipcRendererOn", (channel: string, cb: any) => {
-  ipcRenderer.on(channel, cb);
-});
+contextBridge.exposeInMainWorld("ipcRendererOn", (channel: string, cb: any) =>
+  ipcRenderer.on(channel, cb)
+);
 contextBridge.exposeInMainWorld(
   "ipcRendererSend",
   (channel: string, ...args: any[]) => ipcRenderer.send(channel, ...args)
@@ -20,16 +20,18 @@ contextBridge.exposeInMainWorld("getStore", (key: string) =>
 );
 contextBridge.exposeInMainWorld(
   "writeFileSync",
-  (data: string | NodeJS.ArrayBufferView, options?: WriteFileOptions) =>
-    writeFileSync(
-      path.join(__dirname, BOOKMARKS_DIR),
-      JSON.stringify(data),
-      options
-    )
+  (data: string | NodeJS.ArrayBufferView) =>
+    writeFileSync(path.join(__dirname, BOOKMARKS_DIR), JSON.stringify(data))
 );
-contextBridge.exposeInMainWorld("readFileSync", () =>
-  JSON.parse(readFileSync(path.join(__dirname, BOOKMARKS_DIR), "utf8"))
-);
+contextBridge.exposeInMainWorld("readFileSync", () => {
+  if (!existsSync(path.join(__dirname, BOOKMARKS_DIR))) {
+    writeFileSync(path.join(__dirname, BOOKMARKS_DIR), "{}");
+    return {};
+  } else
+    return JSON.parse(
+      readFileSync(path.join(__dirname, BOOKMARKS_DIR), "utf8")
+    );
+});
 contextBridge.exposeInMainWorld("existsSync", () =>
   existsSync(path.join(__dirname, BOOKMARKS_DIR))
 );

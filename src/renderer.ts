@@ -4,6 +4,9 @@ import { dom } from "./utils/dom";
 
 const { ipcRendererOn, getStore } = window;
 
+ipcRendererOn("rerender", () => bookmark.render());
+ipcRendererOn("src", (_, url) => (dom.webview.src = url));
+
 document.body.addEventListener("click", browser.setBookmarkEvent);
 dom.webview.classList.toggle("dark", getStore("dark") === "dark");
 dom.address.addEventListener("keyup", browser.redirect);
@@ -14,6 +17,3 @@ dom.nextPage.addEventListener("click", dom.webview.goForward);
 dom.browserOpacity.addEventListener("input", browser.changeOpacity);
 dom.browserColor.addEventListener("click", browser.toggleDarkMode);
 dom.bookmarkPopup.addEventListener("keyup", browser.keyupBookmark);
-
-ipcRendererOn("rerender", bookmark.render);
-ipcRendererOn("src", (_, url) => (dom.webview.src = url));
