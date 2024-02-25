@@ -21,6 +21,7 @@ const createWindow = (url = "https://google.com") => {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
   mainWindow.loadFile(__dirname + "./index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
   windows[mainWindow.id] = mainWindow;

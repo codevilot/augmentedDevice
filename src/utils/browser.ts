@@ -44,7 +44,7 @@ class Browser {
         //TODO: split event
         dom.navigationButton.classList.remove("open");
         break;
-      case "favorite-background":
+      case "bookmark-background":
         bookmark.close();
         break;
       case "bookmark-icon":

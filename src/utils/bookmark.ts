@@ -21,11 +21,8 @@ class Bookmark {
 
   toggle() {
     const savedBookMark = this.data[this.getSrc()];
-    if (savedBookMark) {
-      //
-    } else {
-      this.add();
-    }
+
+    this.add();
     dom.bookmarkPopup.classList.toggle("open");
     dom.bookmarkName.value = this.data[this.getSrc()].name;
     dom.bookmarkIcon.focus();
@@ -48,13 +45,13 @@ class Bookmark {
     writeFileSync(this.data);
   }
   close() {
-    dom.bookmarkIcon.classList.remove("inactive");
+    dom.bookmarkPopup.classList.remove("open");
   }
   redirect(href: string) {
     dom.webview.loadURL("https://" + href);
   }
   private createBookmark([address, { name }]) {
-    () => `<button id="favorite" href="${address}">${name}</button>`;
+    return `<button id="favorite" href="${address}">${name}</button>`;
   }
   render() {
     const bookmarkList: bookmarkList = Object.entries(this.data);

@@ -8,7 +8,7 @@ ipcRendererOn("rerender", () => bookmark.render());
 ipcRendererOn("src", (_, url) => (dom.webview.src = url));
 
 document.body.addEventListener("click", browser.bookmarkEvent);
-document.body.addEventListener("keyup", browser.openDevtools);
+document.body.addEventListener("keydown", browser.openDevtools);
 dom.webview.classList.toggle("dark", getStore("dark") === "dark");
 dom.address.addEventListener("keyup", browser.redirect);
 dom.webview.addEventListener("did-stop-loading", browser.renderBrowser);
