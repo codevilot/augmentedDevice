@@ -44,7 +44,7 @@ class Bookmark {
     return dom.webview.src.split("://")[1];
   }
   setName(name: string) {
-    this.data = { [this.getSrc()]: { name: name } };
+    this.data = { ...this.data, [this.getSrc()]: { name: name } };
     writeFileSync(this.data);
   }
   close() {

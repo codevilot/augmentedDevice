@@ -12,6 +12,7 @@ const createWindow = (url = "https://google.com") => {
     height: 600,
     transparent: true,
     frame: false,
+    minWidth: 600,
     icon: __dirname + "./logo.ico",
     webPreferences: {
       nodeIntegration: true,

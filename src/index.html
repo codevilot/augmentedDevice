@@ -7,15 +7,12 @@
   </head>
   <body>
     <div class="title-bar">
-      <input type="checkbox" id="open-address" hidden />
-      <label class="title-item" for="open-address"
-        ><div class="icon">⁝</div></label
-      >
-
+      <div class="icon" id="open-navigation">⁝</div>
+      <div id="navigation-background"></div>
       <div class="navigation">
         <div class="address-control">
-          <button id="prev-page" class="inactive">🡰</button>
-          <button id="next-page" class="inactive">🡲</button>
+          <div id="prev-page" class="icon inactive">🡰</div>
+          <div id="next-page" class="icon inactive">🡲</div>
           <div class="address-bar">
             <input id="address" />
             <button id="bookmark-icon" class="inactive"></button>
@@ -30,8 +27,9 @@
             <div id="favorite-background"></div>
           </div>
         </div>
-        <div>
-          Opacity
+        <button class="title-item">
+          <div class="icon">◌</div>
+          <div class="description">opacity</div>
           <input
             id="browser-opacity"
             type="range"
@@ -40,24 +38,29 @@
             step="0.01"
             value="1"
           />
-        </div>
+        </button>
+
         <button class="title-item" id="browser-color">
-          <div class="icon">☾</div>
-          Dark mode
+          <div class="icon">⬕</div>
+          <div class="description">dark mode</div>
         </button>
         <button class="title-item" id="toggle-device">
-          <div class="icon">🖥</div>
-          Mobile mode
+          <div class="icon">✈</div>
+          <div class="description">change agent</div>
         </button>
-        <div id="bookmark-bar"></div>
+        <button class="title-item" id="bookmark">
+          <div class="icon">✒</div>
+          <div class="description">bookmark</div>
+          <div id="bookmark-bar"></div>
+        </button>
       </div>
 
-      <div class="draggable title-item">구글</div>
-      <button class="title-item">
+      <div class="draggable browser-item">구글</div>
+      <button class="browser-item">
         <div class="window-icon" id="open-browser">◳</div>
       </button>
-      <!-- <button class="title-item" id="full-browser">❒</button> -->
-      <button class="title-item">
+      <!-- <button class="browser-item" id="full-browser">❒</button> -->
+      <button class="browser-item">
         <div class="window-icon close" id="close-browser">✖</div>
       </button>
     </div>

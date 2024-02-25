@@ -1,6 +1,6 @@
 import { bookmark } from "./bookmark";
 import { dom } from "./dom";
-const { setStore, ipcRendererOn, ipcRendererSend, getStore } = window;
+const { setStore, ipcRendererSend } = window;
 const MOBILE_AGENT =
   "Mozilla/5.0 (Linux; Android 4.2.1; en‑us; Nexus 5 Build/JOP40D) AppleWebKit/535.19 (KHTML, like Gecko; googleweblight) Chrome/38.0.1025.166 Mobile Safari/535.19";
 const PC_AGENT = "electron";
@@ -38,8 +38,12 @@ class Browser {
   public keyupBookmark({ code }: KeyboardEvent) {
     if (code === "Enter") bookmark.add();
   }
-  public setBookmarkEvent({ target }: Event) {
+  public bookmarkEvent({ target }: Event) {
     switch (target["id"]) {
+      case "navigation-background":
+        //TODO: split event
+        dom.navigationButton.classList.remove("open");
+        break;
       case "favorite-background":
         bookmark.close();
         break;
@@ -53,11 +57,19 @@ class Browser {
         bookmark.remove();
         break;
       case "favorite":
+        dom.navigationButton.classList.remove("open");
         bookmark.redirect(target["getAttribute"]("href"));
         break;
       default:
         ipcRendererSend(target["id"]);
     }
+  }
+  public openNavigation() {
+    dom.navigationButton.classList.add("open");
+  }
+  public openDevtools({ code }: KeyboardEvent) {
+    if (code !== "F12") return;
+    dom.webview.openDevTools();
   }
 }
 

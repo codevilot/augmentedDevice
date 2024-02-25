@@ -9,6 +9,7 @@ export const dom = {
   bookmarkName: document.getElementById("bookmark-name") as HTMLInputElement,
   toggleDevice: document.getElementById("toggle-device"),
   dragElement: document.querySelector(".draggable"),
+  navigationButton: document.querySelector("#open-navigation"),
   browserColor: document.getElementById("browser-color"),
   browserOpacity: document.getElementById(
     "browser-opacity"

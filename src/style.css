@@ -29,8 +29,7 @@ webview.dark {
   background-color: rgb(0, 0, 0);
 }
 label {
-  padding: 1px 6px;
-  font-weight: bold;
+  margin-left: 5px;
 }
 .window-icon {
   width: 45px;
@@ -45,12 +44,17 @@ label {
 .window-icon:hover {
   background-color: gray;
 }
-.icon {
-  width: 30px;
-  height: 30px;
+.icon,
+.description {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.icon {
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 30px;
+  max-height: 30px;
 }
 .icon:hover {
   background-color: gray;
@@ -74,6 +78,8 @@ label {
 
 #bookmark-icon {
   position: absolute;
+  width: 30px;
+  height: 30px;
   right: 0;
   background: none;
   border: none;
@@ -95,15 +101,34 @@ label {
   z-index: 1;
   background: rgb(243, 243, 243);
 }
-.title-item {
+.browser-item {
   display: flex;
   align-items: center;
 }
-.title-bar #open-address:checked ~ .navigation {
+.title-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border: 0;
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: content-box;
+}
+.title-item:hover {
+  background-color: gray;
+}
+#open-navigation {
+  margin-left: 2px;
+  margin-top: 2px;
+}
+#open-navigation.open ~ .navigation {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   z-index: 1;
+  margin-left: 5px;
 }
 
 .draggable {
@@ -117,12 +142,9 @@ label {
   justify-content: center;
 }
 #browser-color {
-  background: none;
   border: none;
-  font-size: 1rem;
 }
 #toggle-device {
-  font-size: 1rem;
 }
 #prev-page.inactive,
 #next-page.inactive {
@@ -150,7 +172,7 @@ label {
 
 #prev-page,
 #next-page,
-.title-item {
+.browser-item {
   background: none;
   border: none;
 }
@@ -214,18 +236,48 @@ label {
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   border-radius: 10px;
 }
+#open-navigation:not(.open) + #navigation-background {
+  display: none;
+}
+#navigation-background {
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 .address-control {
   display: flex;
   height: var(--title-height);
 }
+#bookmark:hover #bookmark-bar {
+  display: block;
+}
 #bookmark-bar {
-  display: flex;
+  display: none;
   min-height: 5px;
+  position: absolute;
+  left: 100%;
+  top: calc(100% - 40px);
+  width: 100px;
+  background-color: rgb(254, 254, 254);
+  border-radius: 5px;
+  padding: 5px;
 }
 #favorite {
   height: var(--title-height);
   border: none;
-  background: none;
+  width: 100%;
+  text-align: left;
+  margin-left: -5px;
+  margin-right: -5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  box-sizing: content-box;
+}
+#favorite:hover {
+  background-color: gray;
 }
 webview {
   height: calc(100% - var(--title-height));
