@@ -130,7 +130,9 @@ label {
   z-index: 1;
   margin-left: 5px;
 }
-
+.no-bookmark {
+  color: rgba(0, 0, 0, 0.3);
+}
 .draggable {
   -webkit-app-region: drag;
   width: 100%;

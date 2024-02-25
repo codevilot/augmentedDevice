@@ -53,16 +53,18 @@ class Bookmark {
   redirect(href: string) {
     dom.webview.loadURL("https://" + href);
   }
+  private createBookmark([address, { name }]) {
+    () => `<button id="favorite" href="${address}">${name}</button>`;
+  }
   render() {
     const bookmarkList: bookmarkList = Object.entries(this.data);
     if (this.data[this.getSrc()]) dom.bookmarkIcon.classList.remove("inactive");
     else dom.bookmarkIcon.classList.add("inactive");
-    dom.bookmarkBar.innerHTML = bookmarkList
-      .map(
-        ([address, { name }]) =>
-          `<button id="favorite" href="${address}">${name}</button>`
-      )
-      .join("");
+
+    dom.bookmarkBar.innerHTML =
+      bookmarkList.length === 0
+        ? `<div class="no-bookmark">------</div>`
+        : bookmarkList.map(this.createBookmark).join("");
   }
 }
 
