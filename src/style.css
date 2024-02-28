@@ -141,7 +141,8 @@ label {
   font-size: 0.8rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  text-wrap: nowrap;
+  overflow: hidden;
 }
 #browser-color {
   border: none;

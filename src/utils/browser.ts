@@ -34,10 +34,13 @@ class Browser {
         ? target["value"]
         : "https://" + target["value"]
     );
+    dom.navigationButton.classList.remove("open");
   }
   public keyupBookmark({ code }: KeyboardEvent) {
     if (code === "Enter") bookmark.add();
   }
+
+  
   public bookmarkEvent({ target }: Event) {
     switch (target["id"]) {
       case "navigation-background":
