@@ -1,6 +1,6 @@
 {
   "name": "augmenteddevice",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AugumentedDevice",
   "module": "commonjs",
   "main": "build/main.js",
@@ -8,7 +8,7 @@
     "lint": "echo \"No linting configured\"",
     "dist": "electron-builder build",
     "build": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/logo.ico build && copyfiles -f src/style.css build && copyfiles -f src/bookmarks.json build ",
-    "dev": "yarn build && electron ."
+    "dev": "npm build && electron ."
   },
   "keywords": [],
   "author": {
