@@ -40,9 +40,12 @@
     "productName": "AugumentedDevice",
     "asar": true,
     "win": {
-      "target": [
-        "nsis"
-      ]
+      "target": "nsis",
+      "icon": "./src/logo.png"
+    },
+    "mac": {
+      "target": "default",
+      "icon": "./src/logo.png"
     },
     "nsis": {
       "oneClick": true,
