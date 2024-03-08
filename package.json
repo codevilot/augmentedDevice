@@ -43,10 +43,8 @@
       "target": "nsis",
       "icon": "./src/logo.png"
     },
-    "mac": {
-      "target": [
-        "default"
-      ],
+    "dmg": {
+      "title": "AugumentedDevice",
       "icon": "./src/logo.png"
     },
     "nsis": {
