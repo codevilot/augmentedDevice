@@ -44,7 +44,9 @@
       "icon": "./src/logo.png"
     },
     "mac": {
-      "target": "default",
+      "target": [
+        "default"
+      ],
       "icon": "./src/logo.png"
     },
     "nsis": {
