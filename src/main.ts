@@ -22,7 +22,7 @@ const createWindow = (url = "https://google.com") => {
     },
   });
 
-  mainWindow.loadFile(__dirname + "./index.html");
+  mainWindow.loadFile(__dirname + "/index.html");
   mainWindow.setAlwaysOnTop(true, "floating");
   windows[mainWindow.id] = mainWindow;
 };

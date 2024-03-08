@@ -8,7 +8,7 @@
     "lint": "echo \"No linting configured\"",
     "build": "electron-builder build",
     "prebuild": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/logo.ico build && copyfiles -f src/style.css build && copyfiles -f src/bookmarks.json build ",
-    "dev": "npm build && electron ."
+    "dev": "npm run prebuild && electron ."
   },
   "keywords": [],
   "author": {
