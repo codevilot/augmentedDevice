@@ -43,6 +43,16 @@
       "target": "nsis",
       "icon": "./src/logo.png"
     },
+    "mac": {
+      "target": [
+        {
+          "target": "mas",
+          "arch": [
+            "universal"
+          ]
+        }
+      ]
+    },
     "nsis": {
       "oneClick": true,
       "shortcutName": "AugumentedDevice",
