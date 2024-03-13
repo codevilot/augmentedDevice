@@ -43,10 +43,13 @@
       "target": "nsis",
       "icon": "./src/logo.png"
     },
+    "dmg": {
+      "sign": false
+    },
     "mac": {
       "target": [
         {
-          "target": "mas",
+          "target": "dmg",
           "arch": [
             "universal"
           ]
