@@ -43,11 +43,6 @@
       "target": "nsis",
       "icon": "./src/logo.png"
     },
-    "dmg": {
-      "title": "AugumentedDevice",
-      "icon": "./src/logo.png",
-      "sign":false
-    },
     "nsis": {
       "oneClick": true,
       "shortcutName": "AugumentedDevice",
