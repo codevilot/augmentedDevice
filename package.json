@@ -45,7 +45,8 @@
     },
     "dmg": {
       "title": "AugumentedDevice",
-      "icon": "./src/logo.png"
+      "icon": "./src/logo.png",
+      "sign":false
     },
     "nsis": {
       "oneClick": true,
