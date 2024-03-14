@@ -54,7 +54,8 @@
             "universal"
           ]
         }
-      ]
+      ],
+      "icon": "./src/logo.png"
     },
     "nsis": {
       "oneClick": true,
