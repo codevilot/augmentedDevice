@@ -46,7 +46,6 @@
       "sign": false
     },
     "mac": {
-      "hardenedRuntime": false,
       "target": [
         {
           "target": "dmg",
