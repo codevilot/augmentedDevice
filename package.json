@@ -47,6 +47,7 @@
       "sign": false
     },
     "mac": {
+      "hardenedRuntime": false,
       "target": [
         {
           "target": "dmg",
@@ -55,8 +56,8 @@
           ]
         }
       ],
-      "icon": "./src/logo.icns",  
-      "type": "development"
+      "icon": "./src/logo.icns"
+
     },
     "nsis": {
       "oneClick": true,
