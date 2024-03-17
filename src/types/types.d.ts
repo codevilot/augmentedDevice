@@ -13,5 +13,6 @@ declare global {
     readonly writeFileSync: (data: object, options?: WriteFileOptions) => void;
     readonly readFileSync: () => Buffer;
     readonly existsSync: () => boolean;
+    readonly isMac: boolean;
   }
 }

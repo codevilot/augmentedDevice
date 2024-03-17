@@ -1,11 +1,13 @@
 import { bookmark } from "./utils/bookmark";
 import { browser } from "./utils/browser";
 import { dom } from "./utils/dom";
+const { ipcRendererOn, getStore, isMac } = window;
 
-const { ipcRendererOn, getStore } = window;
+
 
 ipcRendererOn("rerender", () => bookmark.render());
 ipcRendererOn("src", (_, url) => (dom.webview.src = url));
+if(isMac) document.body.classList.add('os-mac');
 
 document.body.addEventListener("click", browser.bookmarkEvent);
 document.body.addEventListener("keydown", browser.openDevtools);

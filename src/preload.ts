@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer } from "electron";
 import * as store from "electron-localstorage";
 import * as path from "path";
 import { writeFileSync, readFileSync, existsSync, WriteFileOptions } from "fs";
-
+import * as os from "os"
 const BOOKMARKS_DIR = "./bookmarks.json";
 
 contextBridge.exposeInMainWorld("ipcRendererOn", (channel: string, cb: any) =>
@@ -35,3 +35,4 @@ contextBridge.exposeInMainWorld("readFileSync", () => {
 contextBridge.exposeInMainWorld("existsSync", () =>
   existsSync(path.join(__dirname, BOOKMARKS_DIR))
 );
+contextBridge.exposeInMainWorld('isMac', os.platform() === "darwin")
