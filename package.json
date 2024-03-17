@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "echo \"No linting configured\"",
     "build": "electron-builder build",
-    "prebuild": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/logo.ico build && copyfiles -f src/logo.icns build && copyfiles -f src/style.css build && copyfiles -f src/bookmarks.json build ",
+    "prebuild": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/icon.ico resources && copyfiles -f src/icon.icns resources && copyfiles -f src/style.css build && copyfiles -f src/bookmarks.json build ",
     "dev": "npm run prebuild && electron ."
   },
   "keywords": [],
@@ -40,8 +40,7 @@
     "productName": "AugumentedDevice",
     "asar": true,
     "win": {
-      "target": "nsis",
-      "icon": "./src/logo.ico"
+      "target": "nsis"
     },
     "dmg": {
       "sign": false
@@ -55,9 +54,7 @@
             "universal"
           ]
         }
-      ],
-      "icon": "./src/logo.icns"
-
+      ]
     },
     "nsis": {
       "oneClick": true,
@@ -66,7 +63,7 @@
       "uninstallDisplayName": "AugumentedDevice"
     },
     "directories": {
-      "buildResources": "./resources/installer/",
+      "buildResources": "resources",
       "output": "./dist/",
       "app": "."
     }
