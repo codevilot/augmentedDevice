@@ -55,7 +55,8 @@
           ]
         }
       ],
-      "icon": "./src/logo.icns"
+      "icon": "./src/logo.icns",  
+      "type": "development"
     },
     "nsis": {
       "oneClick": true,
