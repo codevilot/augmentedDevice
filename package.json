@@ -48,7 +48,7 @@
     "afterSign": "electron-builder-notarize",
     "mac": {
       "hardenedRuntime": true,
-      "entitlements": "./resources/entitlements.mas.plist",
+      "entitlements": "resources/entitlements.mas.plist",
       "target": [
         {
           "target": "dmg",
