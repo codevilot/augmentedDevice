@@ -44,9 +44,6 @@
     "win": {
       "target": "nsis"
     },
-    "dmg": {
-      "sign": false
-    },
     "mac": {
       "target": [
         {
