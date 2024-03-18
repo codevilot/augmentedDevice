@@ -50,6 +50,7 @@
     "mac": {
       "hardenedRuntime": true,
       "entitlements": "./resources/entitlements.mac.plist",
+      "entitlementsInherit": "./resources/entitlements.mac.plist",
       "target": [
         {
           "target": "dmg",
