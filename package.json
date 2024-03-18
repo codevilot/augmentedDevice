@@ -46,6 +46,7 @@
       "target": "nsis"
     },
     "afterSign": "electron-builder-notarize",
+    "appId": "com.heon.browser",
     "mac": {
       "hardenedRuntime": true,
       "entitlements": "./resources/entitlements.mac.plist",
