@@ -6,7 +6,7 @@
   "main": "build/main.js",
   "scripts": {
     "lint": "echo \"No linting configured\"",
-    "build": "electron-builder .",
+    "build": "electron-builder build",
     "build:mac": "CSC_IDENTITY_AUTO_DISCOVERY=false DEBUG=electron-builder electron-builder --mac",
     "build:win": "electron-builder --win",
     "prebuild": "tsc && copyfiles -f src/index.html build && webpack --config webpack.config.js && copyfiles -f src/style.css build && copyfiles -f src/bookmarks.json build ",
