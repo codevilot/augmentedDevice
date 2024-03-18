@@ -23,7 +23,6 @@
     "electron-squirrel-startup": "^1.0.0"
   },
   "devDependencies": {
-    "electron": "^28.2.3",
     "@electron-forge/cli": "^6.0.3",
     "@electron-forge/maker-deb": "^6.0.3",
     "@electron-forge/maker-rpm": "^6.0.3",
@@ -32,7 +31,9 @@
     "@electron-forge/publisher-github": "^6.0.3",
     "@types/node": "20.8.0",
     "copyfiles": "^2.4.1",
+    "electron": "^28.2.3",
     "electron-builder": "^24.9.1",
+    "electron-builder-notarize": "^1.5.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
     "webpack": "^5.90.2",
@@ -44,7 +45,10 @@
     "win": {
       "target": "nsis"
     },
+    "afterSign": "electron-builder-notarize",
     "mac": {
+      "hardenedRuntime": true,
+      "entitlements": "./node_modules/electron-builder-notarize/entitlements.mac.inherit.plist",
       "target": [
         {
           "target": "dmg",
